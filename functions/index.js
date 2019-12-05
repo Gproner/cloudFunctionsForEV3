@@ -30,11 +30,10 @@ exports.increaseCurrentTemperature = functions.https.onRequest((request,response
     var currentTemp = 25;
     admin.firestore().collection('Rooms').doc('mpr2VYubREvNknWA47e2').get().then(function(doc){
          currentTemp= doc.data().currentTemp
-      }).then(
-    admin.firestore().collection('Rooms').doc('mpr2VYubREvNknWA47e2').update({
-        currentTemp: currentTemp+1
-          })
-          )
-          response.send(currentTemp)
+         admin.firestore().collection('Rooms').doc('mpr2VYubREvNknWA47e2').update({
+            currentTemp: currentTemp+1
+              })
+      })
+          response.send(`${currentTemp}`)
 
 });
